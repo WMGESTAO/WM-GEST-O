@@ -1,0 +1,46 @@
+# WM Gestão — versão 1.0.0
+
+Aplicativo web instalável para controle simples de alunos, mensalidades, recebimentos, despesas e recibos em JPG.
+
+## O que está incluído
+- Cadastro e edição de alunos (telefone, mensalidade, vencimento, entrada, situação e observações).
+- Visão anual das mensalidades de janeiro a dezembro.
+- Registro de pagamentos, inclusive parciais, com data, referência e forma de pagamento.
+- Geração de recibos em imagem JPG e tentativa de compartilhamento nativo pelo celular.
+- Despesas por categoria, relatórios anuais e exportação CSV.
+- Backup completo e restauração em JSON.
+- Layout adaptado para celular e computador; suporte a instalação PWA.
+
+## Importante sobre armazenamento
+Esta versão é **local-first**: os dados ficam no armazenamento do navegador/aparelho e não são enviados para um servidor. Isso é gratuito e evita expor dados dos alunos a um serviço externo, mas **não sincroniza automaticamente entre celular e computador**. Faça backups regulares em Configurações ou no botão Backup. Se limpar os dados do navegador, desinstalar ou perder o aparelho, os dados locais podem ser perdidos sem backup.
+
+Não use o aplicativo em modo privado/anônimo. Para compartilhar os mesmos dados entre dispositivos, será necessária uma versão com backend ou planilha online e configuração de acesso/autenticação. Isso não foi ativado nesta versão.
+
+## Como testar imediatamente
+1. Extraia o ZIP para uma pasta.
+2. Abra `index.html` no navegador para testar os recursos principais.
+3. Para o service worker e a instalação PWA funcionarem corretamente, publique a pasta em um host estático HTTPS (por exemplo, GitHub Pages ou Netlify). O navegador pode bloquear recursos de instalação quando o arquivo é aberto diretamente (`file://`).
+
+## Como publicar gratuitamente usando GitHub Pages
+1. Crie/entre numa conta GitHub e crie um repositório novo, por exemplo `wm-gestao`.
+2. Envie todos os arquivos desta pasta para a raiz do repositório: `index.html`, `app.js`, `manifest.webmanifest`, `sw.js`, `icon.svg`, `icon-192.png`, `icon-512.png`.
+3. No repositório, abra **Settings → Pages**.
+4. Em **Build and deployment**, escolha **Deploy from a branch**, branch `main`, pasta `/ (root)` e salve.
+5. Aguarde a publicação e abra a URL HTTPS que o GitHub Pages informar.
+6. No Android/Chrome: menu ⋮ → **Instalar app** ou **Adicionar à tela inicial**. No iPhone/Safari: botão Compartilhar → **Adicionar à Tela de Início**.
+7. Use sempre a mesma URL publicada. Os dados continuam locais a cada dispositivo.
+
+## Backup e restauração
+- Para exportar: botão **Backup** ou Configurações → **Baixar backup completo**.
+- Guarde o arquivo `.json` num local seguro, idealmente em dois lugares.
+- Para restaurar: Configurações → **Restaurar backup** e selecione o JSON.
+- Restaurar substitui os dados existentes no aparelho atual. Exporte um backup atual antes de restaurar.
+
+## Recibos
+O recibo gerado é um comprovante simples de pagamento, não uma nota fiscal. Configure o nome da academia e responsável em Configurações. No celular, o botão **Compartilhar** pode abrir o menu de compartilhamento do sistema; se não funcionar no navegador, baixe o JPG e anexe manualmente no WhatsApp.
+
+## Limitações conhecidas desta versão
+- Não há sincronização entre dispositivos nem login de usuário.
+- Não há integração automática com WhatsApp ou cobrança bancária.
+- As pendências são estimativas calculadas a partir da mensalidade atual, situação do aluno, vencimento e pagamentos lançados; ajuste manualmente situações especiais (bolsas, isenções ou acordos) nas suas rotinas.
+- Faça backup antes de mudar de aparelho, limpar o navegador ou restaurar dados.
